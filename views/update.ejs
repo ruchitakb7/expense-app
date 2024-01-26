@@ -1,0 +1,51 @@
+<head>
+
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+<%- include('./includes/nav.ejs') %>
+<div class="main">
+<form action="/edit" method="post" >
+    <% if (prod.length > 0) { %>
+        <div>
+            <% for (let product of prod) { %>
+                
+                <p>
+                    <label>Choose ExpenseAmount :
+                        <input type="number" value="<%= product.expenseamount %>"   name="expenseamount" /></label>
+                </p>
+     
+                <p>
+                    <label>Description :
+                        <input type="text" value="<%= product.description %>"  name="description" /></label>
+                </p>
+    
+                <p>
+                    <label>Choose a Category:</label>
+
+                        <select name="category" id="category">
+                            <option value="<%= product.category %>"></option>
+                            <option value="Movie">Movie</option>
+                            <option value="shopping">shopping</option>
+                            <option value="Grocery">Grocery</option>
+                            <option value="Travelling">Travelling</option>
+                          </select>
+                </p>
+                <p>
+                    <input type="hidden" value="<%= product.id %>" name="id">
+                </p>
+               
+                <p>
+                    <button type="submit">Update</button>
+                </p>
+                   
+            <% } %>
+        </div>
+    <% } else { %>
+        <h1>No Products Found!</h1>
+    <% } %>
+    </form>
+
+</div>
+</body>
